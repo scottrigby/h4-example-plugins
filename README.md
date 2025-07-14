@@ -1,20 +1,14 @@
-# Example simple Helm 4 plugin types
+# Example (simple) Helm 4 plugin types
 
-## To test
+Example plugins to test [scottrigby/simple-plugin-types](https://github.com/scottrigby/helm/tree/simple-plugin-types) experimental branch as part of for [hip:0026: H4HIP: Wasm plugin system](https://github.com/helm/community/blob/main/hips/hip-0026.md).
 
-Make commands:
+That branch only adds the initial plugin types to Helm 4 to identify where to modify the codebase for the new types. Is not yet backwards compatible with Helm 3 plugins, and does not yet add support for additional runtimes (Wasm). Will be merged with Wasm runtime work and Helm 3 plugin backwards-compatibility.
 
-- install
-- test
-- uninstall
-- clean
+See diff https://github.com/helm/helm/compare/main...scottrigby:helm:simple-plugin-types
 
-# Context
+## To use
 
-Example plugins for [scottrigby/simple-plugin-types](https://github.com/scottrigby/helm/tree/simple-plugin-types) experimental branch to add new plugin types to Helm 4.
+This repo includes a Makefile:
 
-The branch only includes the initial planned types, and does not include adding new runtimes (example Wasm).
-
-It also does not include backwards-compatibility with Helm 3 style plugins (there is a new `type` field added).
-
-This will be merged with Wasm plugin work for [hip:0026: H4HIP: Wasm plugin system](https://github.com/helm/community/blob/main/hips/hip-0026.md) to add the new runtime and Helm 3 plugin backwards-compatibility.
+- `make test`
+- `make clean`
