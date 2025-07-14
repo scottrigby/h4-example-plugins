@@ -1,0 +1,8 @@
+# run with:
+#   go run ./cmd/helm example-cli foo bar --baz=qux quxx
+name: example-cli
+version: 0.1.0
+type: cli
+description: example CLI plugin type
+platformCommand:
+  - command: ${HELM_PLUGIN_DIR}/run.sh

@@ -1,0 +1,11 @@
+# run with
+#   go run ./cmd/helm cli1 foo bar --baz=qux quxx
+#
+# example: combine with download plugin
+#  go run ./cmd/helm template example foo://does-not-matter/example --post-renderer postr1
+name: example-postrender
+version: 0.1.0
+type: postrender
+description: example postrender plugin type
+platformCommand:
+  - command: ${HELM_PLUGIN_DIR}/run.sh
