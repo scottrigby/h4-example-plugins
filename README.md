@@ -1,4 +1,4 @@
-# Simple Helm 4 plugin types
+# Example simple Helm 4 plugin types
 
 ## To test
 
