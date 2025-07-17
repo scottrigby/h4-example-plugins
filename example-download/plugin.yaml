@@ -1,5 +1,6 @@
 # test with:
 #   go run ./cmd/helm template example example://does-not-matter/example
+apiVersion: v1
 name: example-download
 version: 0.1.0
 type: download

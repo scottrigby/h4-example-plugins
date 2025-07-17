@@ -1,5 +1,6 @@
 # run with:
 #   go run ./cmd/helm example-cli foo bar --baz=qux quxx
+apiVersion: v1
 name: example-cli
 version: 0.1.0
 type: cli
