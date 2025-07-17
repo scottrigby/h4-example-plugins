@@ -1,0 +1,7 @@
+# run with:
+#   go run ./cmd/helm example-cli-legacy foo bar --baz=qux quxx
+name: example-cli-legacy
+version: 0.1.0
+description: example legacy (defaults to CLI) plugin type
+platformCommand:
+  - command: ${HELM_PLUGIN_DIR}/run.sh
