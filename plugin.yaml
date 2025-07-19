@@ -1,0 +1,18 @@
+# run with:
+#   go run ./cmd/helm example-cli foo bar --baz=qux quxx
+apiVersion: v1
+type: cli
+name: example-cli
+version: 0.1.0
+sourceURL: https://github.com/scottrigby/h4-simple-plugin-types
+# optional. subprocess is the default
+runtime: subprocess
+config:
+  usage: example-cli custom usage
+  shortHelp: an example v1 CLI plugin type
+  longHelp: |
+    longer help text
+    can be multiline
+runtimeConfig:
+  platformCommand:
+    - command: ${HELM_PLUGIN_DIR}/run.sh
