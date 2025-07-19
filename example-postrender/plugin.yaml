@@ -4,9 +4,9 @@
 # example: combine with download plugin
 #  go run ./cmd/helm template example foo://does-not-matter/example --post-renderer postr1
 apiVersion: v1
+type: postrender
 name: example-postrender
 version: 0.1.0
-type: postrender
-description: example postrender plugin type
-platformCommand:
-  - command: ${HELM_PLUGIN_DIR}/run.sh
+runtimeConfig:
+  platformCommand:
+    - command: ${HELM_PLUGIN_DIR}/run.sh

@@ -2,6 +2,9 @@
 #   go run ./cmd/helm example-cli-legacy foo bar --baz=qux quxx
 name: example-legacy-cli
 version: 0.1.0
-description: example legacy (defaults to CLI) plugin type
+usage: an example legacy CLI plugin type
+description: |
+    longer help text
+    can be multiline
 platformCommand:
   - command: ${HELM_PLUGIN_DIR}/run.sh
