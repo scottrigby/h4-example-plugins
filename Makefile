@@ -5,7 +5,7 @@ helm4:
 	@pushd $(TMP) \
 		&& git clone git@github.com:scottrigby/helm.git \
 		&& cd helm \
-		&& git checkout simple-plugin-types \
+		&& git checkout plugin-types \
 		&& $(MAKE) build \
 		&& popd \
 		&& mv $(TMP)/helm/bin/helm helm4
