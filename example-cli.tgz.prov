@@ -1,0 +1,47 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+apiVersion: v1
+config:
+  ignoreFlags: false
+  longHelp: |
+    longer help text
+    can be multiline
+  shortHelp: an example v1 CLI plugin type
+  usage: example-cli custom usage
+name: example-cli
+runtime: subprocess
+runtimeConfig:
+  command: ""
+  extraArgs: null
+  hooks: null
+  platformCommand:
+  - arch: ""
+    args: null
+    command: ${HELM_PLUGIN_DIR}/run.sh
+    os: ""
+  platformHooks: null
+  useTunnel: false
+sourceURL: https://github.com/scottrigby/h4-simple-plugin-types
+type: cli
+version: 0.1.0
+
+...
+files:
+  example-cli.tgz: sha256:368d2d1a0f3449110585f2a6384cdf7c2a4363898187e37ea8bade9358628ba6
+-----BEGIN PGP SIGNATURE-----
+
+wsFcBAEBCgAQBQJog07QCRDHxvu1uRwRVQAAFh0QAC34w/rhboQCVHul+IFU2Ju1
+IHLBcRF7uByT8udULa1Ou49/7ej06ucxNwY3chjVSn8s2J88J8F7hAW5L8nDmH8M
+/+YeWE2EjH4a4BysUoGyAWIvFAyDMD38Thw2kdEIrll/ZICaY2pXDKId21J+ZBC8
+Vf1AZyrwmXVcU9a4FGCHHhwdZJ/Dg0ShW5bCyAXWV/+M/tJRfAXZSi13P+Vxe1uk
+JK8BJ7rguGEoDuudgSqmaMOYifRcv94YgBV6oU8+XHnj2kLe/d4OeNBko6wyqE84
+c4W55LVc9tDmhlt5LLrAomhnDT2BNX+ijTVSxnhrrbIx5l7tSdo/jUBKQNgJzyNc
+1AnVbQblqbWbWAxmReFZv0ROx1hNGX7+w/+x9N71kLemaorq1aWodix+5vFi7h91
+Ehm1SyMmjXQqDbNlQMdovXtiVKr+sDbaWWXVfROT9A52skN0vaQJmvQnH1OufbXr
+Go/KQDdbdJ87hK3cUPuDSNUySTRSURO0cF4Y27KjdGE8skjM+YYnCNalO9stfRsf
+DFiympOc64+NvAc4gozAaGSBRq+P4e56Sba2h5qhepYQwWIMGQoIrbcylTmRN6Ua
+J1vzH4vkGr8o8B2NfvnNg4AqpdT2Zvmc+LiGj8k24zzWlywzDLVi97IKrsjKmHyH
+a30oVat7Xl08cxoIyFgX
+=2uNj
+-----END PGP SIGNATURE-----
