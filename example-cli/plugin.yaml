@@ -1,7 +1,7 @@
 # run with:
 #   go run ./cmd/helm example-cli foo bar --baz=qux quxx
 apiVersion: v1
-type: cli
+type: cli/v1
 name: example-cli
 version: 0.1.0
 sourceURL: https://github.com/scottrigby/h4-simple-plugin-types

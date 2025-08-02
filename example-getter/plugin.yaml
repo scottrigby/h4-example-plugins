@@ -1,0 +1,14 @@
+# test with:
+#   go run ./cmd/helm template example example://does-not-matter/example
+apiVersion: v1
+type: getter/v1
+name: example-getter
+version: 0.1.0
+config:
+  protocols:
+  - example
+runtimeConfig:
+  protocolCommands:
+  - protocols:
+    - example
+    command: run.sh

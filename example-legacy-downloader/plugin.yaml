@@ -1,0 +1,8 @@
+# test with:
+#   go run ./cmd/helm template example example-legacy://does-not-matter/example
+name: example-legacy-downloader
+version: 0.1.0
+downloaders:
+- command: run.sh
+  protocols:
+    - example-legacy

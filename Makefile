@@ -1,4 +1,4 @@
-PLUGINS := example-cli example-download example-postrender example-legacy-cli example-legacy-download
+PLUGINS := example-cli example-getter example-postrender example-legacy-cli example-legacy-downloader
 
 helm4:
 	$(eval TMP := $(shell mktemp -d))
@@ -37,7 +37,7 @@ test: install dummy
 	@echo
 	@echo "You should see 'running command example-cli with subcommand foo and args bar --baz=qux quxx'"
 	@echo
-	@echo "==== Testing example-download plugin ===="
+	@echo "==== Testing example-getter plugin ===="
 	@echo
 	@./helm4 template example example://does-not-matter/example
 	@echo
@@ -48,7 +48,7 @@ test: install dummy
 	@echo
 	@echo "You should see the label 'foo: bar' on every 'dummy' chart resource"
 	@echo
-	@echo "==== Testing combined: example-postrender and download plugins ===="
+	@echo "==== Testing combined: example-postrender and getter plugins ===="
 	@./helm4 template example example://does-not-matter/example --post-renderer example-postrender
 	@echo
 	@echo "You should see the label 'foo: bar' on every 'example' chart resource"
@@ -59,6 +59,6 @@ test: install dummy
 	@echo
 	@echo "You should see 'running command example-legacy-cli with subcommand foo and args bar --baz=qux quxx'"
 	@echo
-	@echo "==== Testing example-legacy-download plugin ===="
+	@echo "==== Testing example-legacy-downloader plugin ===="
 	@echo
 	@./helm4 template example example-legacy://does-not-matter/example
