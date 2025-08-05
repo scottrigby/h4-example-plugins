@@ -4,8 +4,8 @@
 # example: combine with getter plugin
 #  go run ./cmd/helm template example example://does-not-matter/example --post-renderer postr1
 apiVersion: v1
-type: postrender/v1
-name: example-postrender
+type: postrenderer/v1
+name: example-postrenderer
 version: 0.1.0
 runtimeConfig:
   platformCommand:
