@@ -5,7 +5,6 @@ type: cli/v1
 name: example-cli
 version: 0.1.0
 sourceURL: https://github.com/scottrigby/h4-simple-plugin-types
-# optional. subprocess is the default
 runtime: subprocess
 config:
   usage: example-cli custom usage

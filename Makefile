@@ -1,14 +1,8 @@
 PLUGINS := example-cli example-getter example-postrender example-legacy-cli example-legacy-downloader
 
 helm4:
-	$(eval TMP := $(shell mktemp -d))
-	@pushd $(TMP) \
-		&& git clone git@github.com:scottrigby/helm.git \
-		&& cd helm \
-		&& git checkout plugin-types \
-		&& $(MAKE) build \
-		&& popd \
-		&& mv $(TMP)/helm/bin/helm helm4
+	test -f ../helm/bin/helm # need to ensure helm git is checked out ../helm, and helm has been built e.g. make -C ../helm
+	ln -s ../helm/bin/helm helm4
 
 dummy: helm4
 	@./helm4 create dummy
@@ -17,7 +11,7 @@ dummy: helm4
 
 clean: uninstall
 	@echo "==== Cleaning helm4 binary ===="
-	@rm -r helm4 dummy || true
+	@rm -rf helm4 dummy
 
 install: helm4
 	@echo "==== Installing example plugins ===="

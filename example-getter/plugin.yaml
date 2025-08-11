@@ -4,6 +4,7 @@ apiVersion: v1
 type: getter/v1
 name: example-getter
 version: 0.1.0
+runtime: subprocess
 config:
   protocols:
   - example
