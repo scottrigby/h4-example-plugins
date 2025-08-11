@@ -1,6 +1,10 @@
 PLUGINS := example-cli example-getter example-postrender example-legacy-cli example-legacy-downloader
 
 helm4:
+    # A suitable version of Helm source needs to be checked out and built at ../helm
+    # e.g.
+    #  h4-example-plugin-types $ (cd .. && git clone https://github.com/scottrigby/helm -b plugin-types)
+    # h4-example-plugin-types $ make -C ../helm
 	test -f ../helm/bin/helm # need to ensure helm git is checked out ../helm, and helm has been built e.g. make -C ../helm
 	ln -s ../helm/bin/helm helm4
 
