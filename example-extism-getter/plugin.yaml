@@ -1,0 +1,14 @@
+---
+# test with:
+#   go run ./cmd/helm template dummy examplewasm://does-not-matter/example
+apiVersion: v1
+type: getter/v1
+name: example-extism-getter
+version: 0.1.0
+runtime: extism/v1
+config:
+  protocols:
+  - examplewasm
+runtimeConfig:
+  allowedPaths:
+    "/tmp": "/tmp"
