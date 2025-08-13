@@ -10,7 +10,7 @@ See diff https://github.com/helm/helm/compare/main...scottrigby:helm:plugin-type
 
 This repo includes a Makefile:
 
-- `make test`
+- `make test PATH="$(pwd):${PATH}"`
 - `make clean`
 
 ## Manual testing
