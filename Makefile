@@ -42,6 +42,12 @@ test: install dummy
 	@echo
 	@./helm4 template example example://does-not-matter/example
 	@echo
+	@echo "==== Testing example-extism-getter plugin ===="
+	@echo
+	@echo "You should see an 'example' chart template"
+	@echo
+	@./helm4 template example2 examplewasm://does-not-matter/example2
+	@echo
 	@echo "You should see an 'example' chart template"
 	@echo
 	@echo "==== Testing example-wasm-getter plugin ===="
