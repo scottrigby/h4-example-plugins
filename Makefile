@@ -43,13 +43,13 @@ test: install dummy
 	@echo
 	@echo "You should see an 'example' chart template"
 	@echo
-	@echo "==== Testing example-postrender plugin ===="
+	@echo "==== Testing example-postrenderer plugin ===="
 	@./helm4 template dummy dummy --post-renderer example-postrenderer
 	@echo
 	@echo "You should see the label 'foo: bar' on every 'dummy' chart resource"
 	@echo
-	@echo "==== Testing combined: example-postrender and getter plugins ===="
-	@./helm4 template example example://does-not-matter/example --post-renderer example-postrender
+	@echo "==== Testing combined: example-postrenderer and getter plugins ===="
+	@./helm4 template example example://does-not-matter/example --post-renderer example-postrenderer
 	@echo
 	@echo "You should see the label 'foo: bar' on every 'example' chart resource"
 	@echo
