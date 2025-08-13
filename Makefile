@@ -1,4 +1,4 @@
-PLUGINS := example-cli example-getter example-postrender example-legacy-cli example-legacy-downloader
+PLUGINS := example-cli example-getter example-postrenderer example-legacy-cli example-legacy-downloader
 
 HELM_BINARY := ../helm/bin/helm
 
