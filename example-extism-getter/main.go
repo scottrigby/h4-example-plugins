@@ -104,7 +104,7 @@ func impl(input InputMessageGetterV1) (*OutputMessageGetterV1, error) {
 	if err != nil {
 		return nil, fmt.Errorf("failed to create temp directory: %w", err)
 	}
-	// defer os.RemoveAll(outputDir)
+	defer os.RemoveAll(outputDirPrefix) // Comment to leave the directory for debugging
 
 	pdk.Log(pdk.LogInfo, fmt.Sprintf("Creating chart %s in directory %s", chartname, outputDirPrefix))
 
