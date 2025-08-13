@@ -1,4 +1,4 @@
-PLUGINS := example-cli example-getter example-postrenderer example-legacy-cli example-legacy-downloader
+PLUGINS := example-cli example-getter example-extism-getter example-postrenderer example-legacy-cli example-legacy-downloader
 
 HELM_BINARY := ../helm/bin/helm
 
@@ -20,6 +20,7 @@ clean: uninstall
 	@rm -rf helm4 dummy
 
 install: helm4
+	make -C example-extism-getter build
 	@echo "==== Installing example plugins ===="
 	@$(foreach name,$(PLUGINS),\
 		./helm4 plugin install ./$(name) || true; \
@@ -42,6 +43,12 @@ test: install dummy
 	@./helm4 template example example://does-not-matter/example
 	@echo
 	@echo "You should see an 'example' chart template"
+	@echo
+	@echo "==== Testing example-wasm-getter plugin ===="
+	@echo
+	@./helm4 template example2 examplewasm://does-not-matter/example2
+	@echo
+	@echo "You should see an 'example2' chart template"
 	@echo
 	@echo "==== Testing example-postrenderer plugin ===="
 	@./helm4 template dummy dummy --post-renderer example-postrenderer
