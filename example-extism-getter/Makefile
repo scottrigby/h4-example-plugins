@@ -10,10 +10,5 @@ plugin.wasm: $(PKG_SOURCE_FILES)
 
 build: plugin.wasm
 
-TEST_FLAGS?= # -cpuprofile cpu.prof -memprofile mem.prof # -bench
-
-test: plugin.wasm
-	go test $(TEST_FLAGS) ./testdriver/
-
 vet:
 	GOOS=wasip1 GOARCH=wasm go vet ./...
