@@ -1,12 +1,14 @@
 PLUGINS := example-cli example-getter example-postrender example-legacy-cli example-legacy-downloader
 
+HELM_BINARY := ../helm/bin/helm
+
 helm4:
     # A suitable version of Helm source needs to be checked out and built at ../helm
     # e.g.
     # git clone https://github.com/scottrigby/helm -b plugin-types --depth 1 ../helm
     # make -C ../helm
-	test -f ../helm/bin/helm # need to ensure helm git is checked out ../helm, and helm has been built e.g. make -C ../helm
-	ln -s ../helm/bin/helm helm4
+	test -f $(HELM_BINARY) # need to ensure helm git is checked out ../helm, and helm has been built e.g. make -C ../helm
+	ln -s $(HELM_BINARY) helm4
 
 dummy: helm4
 	@./helm4 create dummy
