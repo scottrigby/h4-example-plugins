@@ -1,4 +1,4 @@
-PLUGINS := example-cli example-getter example-postrender example-legacy-cli example-legacy-downloader
+PLUGINS := example-cli example-getter example-postrenderer example-legacy-cli example-legacy-downloader
 
 HELM_BINARY := ../helm/bin/helm
 
@@ -43,13 +43,13 @@ test: install dummy
 	@echo
 	@echo "You should see an 'example' chart template"
 	@echo
-	@echo "==== Testing example-postrender plugin ===="
-	@./helm4 template dummy dummy --post-renderer example-postrender
+	@echo "==== Testing example-postrenderer plugin ===="
+	@./helm4 template dummy dummy --post-renderer example-postrenderer
 	@echo
 	@echo "You should see the label 'foo: bar' on every 'dummy' chart resource"
 	@echo
-	@echo "==== Testing combined: example-postrender and getter plugins ===="
-	@./helm4 template example example://does-not-matter/example --post-renderer example-postrender
+	@echo "==== Testing combined: example-postrenderer and getter plugins ===="
+	@./helm4 template example example://does-not-matter/example --post-renderer example-postrenderer
 	@echo
 	@echo "You should see the label 'foo: bar' on every 'example' chart resource"
 	@echo
