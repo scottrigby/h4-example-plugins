@@ -1,12 +1,8 @@
-# run with
-#   go run ./cmd/helm cli1 foo bar --baz=qux quxx
-#
-# example: combine with getter plugin
-#  go run ./cmd/helm template example example://does-not-matter/example --post-renderer postr1
 apiVersion: v1
 type: postrenderer/v1
 name: example-postrenderer
 version: 0.1.0
+sourceURL: https://github.com/scottrigby/h4-example-plugins
 runtime: subprocess
 runtimeConfig:
   platformCommand:
