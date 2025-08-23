@@ -1,20 +1,41 @@
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA512
 
-h1:WaMrWj8nBb6ebS6eU4UbVr/7ywo0UlSuTgMWSPGO2c4=
+APIVersion: legacy
+Config:
+  Protocols:
+  - example-legacy
+Name: example-legacy-downloader
+Runtime: subprocess
+RuntimeConfig:
+  Command: ""
+  Hooks: null
+  PlatformCommands: null
+  PlatformHooks: null
+  ProtocolCommands:
+  - Command: run.sh
+    Protocols:
+    - example-legacy
+SourceURL: ""
+Type: getter/v1
+Version: 0.1.0
+
+...
+files:
+  example-legacy-downloader.tgz: sha256:2a08c9494b86f86d6b4ef1e71344b34cc6985e8fb48d5555e3cb104d1b459168
 -----BEGIN PGP SIGNATURE-----
 
-wsFcBAEBCgAQBQJoqIZaCRDHxvu1uRwRVQAA61cQAL5tz623p/9P2nony+r0HgzX
-uVWBUh7cLFAF4a3xi7zvLnCo5RX+TH1snhJmZE2YSPXOyXP0ZAP5LD3vjTUXJNy8
-xGclySdGiTPIvGgVmElApc+1Ha4IiOGkimys8AvJGdAUirbtSSQmYz0A8ojr+2Mj
-mAieECU24JBiwin37SYefOqkFmExt41pY6KHhMi2Iw5SZvvZbaFzJj39go/uGIwH
-3N9tjcsnkUtq1xDxvb5iSZ3UTnXX9EYl3DnQtIoX5JO0KZqxGAiYTcRIKrRsZaEd
-I+BCJJNT0JBxsXbTpRgYp1oDaENzZr4Q+44/hOH/I3lruyRmVVpXgZJ33wCi52CF
-S+PFjQkSksFUTS2ZbxyI752cpwGFFPix2F2gpdl+tm9krFMvbRcwoiYyNZLks9WP
-/WJumSwC3Vt59K/4ZzMgQoOsqnv77l8BTP/U2CwnSejpPnbQ40/chht01tPQlDSA
-Jb06pxENxsi8vC5sEgdHU84h8/7SQJQfI3Wg2RkB9vUKaUtWIkPieav+IxXFwrgW
-IBeJzbgfhgbqF3gComGWWw3bqamheA2NAE/R0Aj8YnAe8cXLPxkhfJUQUizIlmNe
-/vigAw/f62HMDVdAa3zkB5YSUz7rH32jcB9kAdaD/FAVVGMncNCtlPvLVeMCck2W
-RT4MR8LijAX5avKF0Boh
-=K1ZE
+wsFcBAEBCgAQBQJoqWLPCRDHxvu1uRwRVQAAS4gQAKjcXkIigAmzgGyLxqwJ6Uf2
+TZ78WQ28BWkI91sDnVDdHJxW4Di622iBa003hv5FC4calHcH0TckisikqOcWvBlg
+/N1EMKbJpe2ksDpoiQO01Q/HCDuCptFUJsE1924Z9wp6/SK5LxAnRrdlUAM7Gvre
+vCZwMb87SX9LcaWyJzMeaphMAqysqAdoZjVSPE61Uq9yuXhPQSn4I/yZaYSgtBy3
+XKQR0mOSxNf8TbLoTUjjWTiPtz550jRYYB4jvUitRQF0FJKL3CNDWPaZsKisBYGu
+d5V368XyuyQxc+YRgc7wAawHHnCMkP/ub/SBcR5zet0aX38nhxzD/KttTp3pJrw3
+72OUxzBvORXOn9B58xoA0Z/tFBbeJaVecdBBxJf/adbsGOt0KwOAuDaV+1GGu1Ex
+lwBut3VKxciZLTv5qAQtmx7BmJDGZt72szmUkiYnlzB4VVj0yE25sXyTFSrqxn/N
+RDujDrTRX7ISX/xLF9+/8wEV9OZZeQkacyEhtdkoaGwIeah0Xz0eu6lNTNLOv7ik
+DJC5Oztc0UwJT7wruSLY0na/LwsR2aV/Bbv6C5P6agYYSzX8cUuZvc1UPqVvahmc
+tDojk+RTt6B3MQ3uP3VqlGHLthfMf5ULLmtyKfdIkkbxiqpEiov298uE1lyrAe6x
+S0Z998kQhqLfl5qaXe2a
+=oHZ9
 -----END PGP SIGNATURE-----
