@@ -1,20 +1,41 @@
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA512
 
-h1:3TbvHQlBbIdoTG3Lw2GAXBUdj/k9M+RpMXWCkgDl2ME=
+APIVersion: v1
+Config:
+  Protocols:
+  - example
+Name: example-getter
+Runtime: subprocess
+RuntimeConfig:
+  Command: ""
+  Hooks: null
+  PlatformCommands: null
+  PlatformHooks: null
+  ProtocolCommands:
+  - Command: run.sh
+    Protocols:
+    - example
+SourceURL: https://github.com/scottrigby/h4-simple-plugins
+Type: getter/v1
+Version: 0.1.0
+
+...
+files:
+  example-getter.tgz: sha256:80d4e0c9ee91cc6c288915003d61cfc6d6e7e5bd29dfa2ef4f2fb61db785c6e6
 -----BEGIN PGP SIGNATURE-----
 
-wsFcBAEBCgAQBQJoqIZdCRDHxvu1uRwRVQAA4SwQAGuJG5gIBvi4st6ExTZvdlEk
-bzB00YBzG7s44CdASr4pzs7lwVRd1dJhJa9nc+AAX28/KgfJJugGVL2RetFVX/dx
-GkuWD5d+5uLn5pwMvQCXipEJzMzFPc6D5iexu5AKaMJ/qIoec33Wv4Wu+OuEqnBb
-++Qkd3R+GbljD2YpgYDzMGnkPfjNRlgp6FYBWNBBuyTOtw+2/d/1q9S7NX9oNBUS
-HGRLClfNI7YeApClnPc8hgZncznaLa+q4tECxXSsBErfT8k1s8gHa5/DScC3o16B
-qJdaq49w0Fz2MK98WEqThDWwzdAwx8Xg7wGKHI73dW5BQF8QBFZpYf7SMAiywbm8
-ibFxqzWfBjt5KB8xcqZn8J61dp0/HnU8eb06ILuf8bStVUluws7oMBota3aP99Ji
-3ztYDRvnAWpuX0lRtql01QeKfO/kLrdEHp+V3lsMtv0bKpoM+dAJDeucQ92vsGW5
-UzYc5qmaAMliapHW7NhNADbh9vOuLX/FY2C0VM6SSaH2p8xyj3tEyKz7hdpM01Bh
-Zz/oBNuJ3evPMnGGiWGoZv9CdvKRNeXRDX6a00oOYOSVUHjMpgTZpOI2CnGbDdz3
-gFxYRKnjUNQn1ElWPeRHO6SbfWP+AjWSG2PCH6QK5fSV5dgfGbOQ+vl5fE34NO0Y
-CmKC2E+fdPaqZuh+URjz
-=h106
+wsFcBAEBCgAQBQJoqWLTCRDHxvu1uRwRVQAAOTUQAI/EofSzfWMmqF+YFKSqU6Q1
+MPcKTCzEN/ZVbvlcYIcsw4CS36pofJZzcVIXSPWI98HoesrmfJVjoj/i0JMPgadZ
+Ygd9Aw8XT61UiSt/Ucb1DHSd54c8Tj0TGN7O36a18WUiH+LdRUWPAJ2VLDQJLwni
+AzvH9bo9grhuop7DLAQMyz4fLatGJ+InBUESatI18Ijwr/1bpokICk4SET7dZbBm
+QpFN0oaCOdnwHUaFbE31BjSTwoeXt85k4dCqcAh9XVMJBoPqalTJly5DMke+rhOy
+EtGbR/ZPC7eKrnhm9OSjptRcZgYaTV7nGxxJcwUynN/Zv/66tIBX2ZDjctrrZGzf
+nHB0TwNKHq+rmzywREJ6h0w/slf0TtpOXuChfBaLowYZLX73/ueWonRcp1g8FSFu
+8Et3X+OoNlc/89L2+f6vGA7Kw7Q0nRSIfJz47sa+hzEiUOeEk/2UfkiBc1f10+Ru
+vMwOM6C0CFBTAYCeNRI0+szD2Do2kRFIR2O+k1+F9HjYewV1A4jiwNqonL3TeBo0
++q3asDOKx8Eam8Z7kv6QjgLu+NEPGq/5R/NS07s4eTrvlGn8HKFite9BehMtUMWm
+Nd7KEcz4lj9N8Md3qht6BAxCmUO/L9Q35AZZSt7/WbYT62XIvXC1LU69qenvACon
+EB35Qm0dm5nVeT1Ne8ql
+=jq0u
 -----END PGP SIGNATURE-----

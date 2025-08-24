@@ -1,20 +1,46 @@
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA512
 
-h1:et9Srwvejd1F3OmXjmBsXik1fcSnVlf/YDwI2eGCOV4=
+APIVersion: v1
+Config:
+  IgnoreFlags: false
+  LongHelp: |
+    longer help text
+    can be multiline
+  ShortHelp: an example v1 CLI plugin type
+  Usage: example-cli custom usage
+Name: example-cli
+Runtime: subprocess
+RuntimeConfig:
+  Command: ""
+  Hooks: null
+  PlatformCommands:
+  - Architecture: ""
+    Args: null
+    Command: ${HELM_PLUGIN_DIR}/run.sh
+    OperatingSystem: ""
+  PlatformHooks: null
+  ProtocolCommands: null
+SourceURL: https://github.com/scottrigby/h4-simple-plugin-types
+Type: cli/v1
+Version: 0.1.0
+
+...
+files:
+  example-cli.tgz: sha256:6aed442b1104cb48c2b7d02715064fdbe49527dde0ff99630e6b30eb6844b97e
 -----BEGIN PGP SIGNATURE-----
 
-wsFcBAEBCgAQBQJoqIZTCRDHxvu1uRwRVQAA6dIQAEDYW1IAwUHAHIFYkpxtcUwR
-iMxmU1/PmmbU2MbuLDN0juKc8Zu5VhvwDL8mELp4DML96bsYzWvh9DV1fQo3xtqs
-oU1Jt+6lMq8YZu9kp7q/xYkJXigDzyLCTKs0o4pqLVP4khtGrEryI9CNNsJvr7QQ
-zHpwOYV25u+k2Bg5ASt4U9tinbyFky8zKzVSMZl41cAXP1fjcgGw4y0MSdCXLWGC
-EgVHf71dJToBb+SXwzA6IwmEyNI1VyafmMY78keJkFsKkvCmCgN2DeBS7atUAas8
-bbX9wfoPoSKWTzzq1i7nBD+AM52pBxu6KhDMMIFsXEb746Fe9VZoVwaeI0m6+37i
-hmtpqFbUsDj5K4DC6kq1B/++KsWWhPv1KCexQAziTP0OlGju8aIjSLhylNrl6Ill
-yCdHpM+OxlFCaLSpbJ6cMMSao97XKQsDYWOoLp10lpph0xYnH+2xVrjt34Caxu6e
-8IubMg616ESImWWO/tYkv/HLEjRuwfbR3B6CdEUzPWT+qgJRzmVeEaKCmxlmgE/U
-8fuTaXuMeCU17uI8Ocn1owicLw5e2NDNcxwNLeg14hsa03GwXJkS/6q1bp0TDUP4
-ERvjn95D4TMHPctsltq/VV6/YZcRpnXzvpyP7aRgvqSm2lyf4rcy2qkllQJn5Pwk
-t0X22lwoiX4YeUJyIiez
-=JXQp
+wsFcBAEBCgAQBQJoqWLGCRDHxvu1uRwRVQAArSYQAByGkWZe6GETkveuiypUY8ZV
+jJU7Zg3YiaABaBWcYe8cTKEluH9BskYdLc9pK9KfCITpw+0kIWRKIsrbbfCGuodc
+iVToMHn8ubwTVW0cd3srXoQLxLNpgk2YYLpT7zu492aM1BuH3yw6AuY85VncP89x
+6Og/enU+CvmxfSaKM3byq204Mfs/vMxOBfIkas2LUfSaxVjDUi6t/JKzAop36s/n
+LK9NpoRIDYM4bykM5+55VIIGRBN8KzGbYGOg4XTElrpClYa3gr3ktPQDS1P604U6
+T0yGd+y7tB++ywX3nPGB84JEPq6PBLmBceHPHpsS19YILGNlPp6gkzr+TXXCJEQG
+1z+S4kD+W5DUgVac5JPQ0pIYdxiIIuYKA2pVE6teFFQJIejrnIUvvB4Jdi7sPuPR
+NPN0IbQ5J28Y/uTH4SYgVDD3a0BxOD0e+qXURqWMRrWifwV0TpjU7lhf/smuCh48
+kb7ZawEFAeI3a0lZaaLvXk61Vs4Ej0GLmBD9TGtgyEgmesMx0n1D2YO2mQOsIisB
+wrmuG0dC7ELJk4vppIIGVFGWStLqAQNGEtoCkLVxIjxnBb0nDKktylIAwsAe4q7t
+1TmKDSfAnZJs4lp627fHjJIopMbHPb4yfvdVdDvTj6aaVDdjipPa8vU+XvDv/V4P
+2mviVNmoGWnwgElwfa/e
+=8kTm
 -----END PGP SIGNATURE-----
