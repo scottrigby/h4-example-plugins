@@ -1,0 +1,41 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+APIVersion: legacy
+Config:
+  Protocols:
+  - example-legacy
+Name: example-legacy-downloader
+Runtime: subprocess
+RuntimeConfig:
+  Command: ""
+  Hooks: null
+  PlatformCommands: null
+  PlatformHooks: null
+  ProtocolCommands:
+  - Command: run.sh
+    Protocols:
+    - example-legacy
+SourceURL: ""
+Type: getter/v1
+Version: 0.1.0
+
+...
+files:
+  example-legacy-downloader-0.1.0.tgz: sha256:4973e3b0861cec862c58d67a68f26d8416f1606bccb7b936c5bff71cc386efa8
+-----BEGIN PGP SIGNATURE-----
+
+wsFcBAEBCgAQBQJorCkYCRDHxvu1uRwRVQAABnkQAHN5b2Uzq7gw5+0ykv6HAyey
+baK2C0Jj2NAn2wdoAeL1+nmgtEtrxSI1pbF8YiGzmHsqORmEd7YXzfDzoa4QniJp
+aTyJGPzBLqebZmbJlcIX0Oz5Lk/KAO7immY+HURkpdz5y6mT79oNHN6LT6T1DV9f
+l+KxqNs1EfUXIbDQiSgQtyNruXxWBufhAby6PWzeg1Zoz1FtRMKMK92V7MUwg9QU
+VgffISjius/hYcbmlr6rGzYg5P8Zki7SXwC56fSLZPkxFtDF3WVC44riE/jNrE9L
+us9dAtADgOEPpvR1dp02J1ylI3ZU1656uXs1waBK5ie+3HyyZhhQBWJuCLGl7J3L
+QNmdNxYfmebuBbsef6i/95n5aSFrVu4FhgeXtwvf8Le6FfQ98/1BiBPTHw/fYjd3
+5Q7ZYEPA6XbxI7tg2Hux0Tj+agD0EbpKK8h0brUFPEeov1glmHTm2xtj2PqYGj91
++I4NbliyWHBnkLuDzgUKU6erl70xzuefddBjLOAym5LKt37A4FOxciS2paTE62P5
+/KwCe4zRVrafRa3bWZNBLsYYd9/svejy/qW4mj2yQT1mm8Kwx7ctpDluUqkKR6hq
+gdqr5p54Wpy5/w5cGVTQOyf7guXhXHz324/YoYRpkCBVnxlJaCpir22eM5mj7IEZ
+b4z5Wz2DMwftfbvlyADg
+=l3fP
+-----END PGP SIGNATURE-----
