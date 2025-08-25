@@ -16,26 +16,26 @@ RuntimeConfig:
   - Command: run.sh
     Protocols:
     - example
-SourceURL: https://github.com/scottrigby/h4-simple-plugins
+SourceURL: https://github.com/scottrigby/h4-example-plugins
 Type: getter/v1
 Version: 0.1.0
 
 ...
 files:
-  example-getter-0.1.0.tgz: sha256:56773edb658307b2729521d2c7801163046bab4d5fb36155eedd33336bfd17ec
+  example-getter-0.1.0.tgz: sha256:1e4d878b2806319098890c17c1de907c89a45fb0c95d135825a158034ccc97fc
 -----BEGIN PGP SIGNATURE-----
 
-wsFcBAEBCgAQBQJorCkcCRDHxvu1uRwRVQAAkXAQADMAFBNMAjewSDqZnG3WFW6T
-AoGuh5bYxaXZyGPW9Loww8zMtUr/jGWCg/3SrVc4Y/7tNbNDWLCGD2kgBNIzRe1s
-rr1QxEUOknHmWeNZZDIMWbUZJdYdggguav+z04CFXtPh1e6vyZxFUuwNCT6OVwji
-p1bhDuUxC9NxRgzD+P6eZylUvPPvwxLB8vZ+WGrHi21i2oUMr2IV4Bs33XbG+7iM
-L0fYK42nssgvaINbDT1+9rRtlmIzIcMvqInSIqOL0XTklon2AfVRsUh8SJf3i9sd
-4sTqS5gf8MdZlCHqha9xpP9VBgS5PoH00QWSfsWIBXQl7PX8lWY119KMBphMTppt
-LDDpxHU4fRTox65YSw61cYG0EHwCY9XX4E0NjHKrEAyrMjlIvQCirRyUiKPUQ0ZI
-VTagWrlWXi6j5muy09aJ3uvGCqIbwW2VQbMHKvRz6wQqrrVg2peJ1+1QXyJPF8xU
-xclU1dcVpYAz7x8ONxLl71CzUnaEdtGrOdqV1E/31GMU0vVFO5lVv5OTd1lUalrr
-DGUx8jSl5tr2unQIsHs0ts6Qtxei1XkNhRz/BrEuV+o2sZzBkg/0li3kFowqebay
-L8Sf8fvT3GfT0TCwzVOjGy2jWSZoh+zUHp068tFmNf/oGH9CC3Nyk+p7eH5kUHGv
-90bGrDud7oBBcupPXgcv
-=4qWQ
+wsFcBAEBCgAQBQJorC9MCRDHxvu1uRwRVQAAj0oQAFnE+Fdjjp1EstFE5dlJMUUp
+hPHb3ZXA5Z5FobR1qaEFXljYYUGmqg+nrSzfqS5OLHLEXyRHqfIr2H+zVVT7y4rb
+pENwHWtOydFMbgMglqeSGuGjt+cDnU2imfR1jg0L8WJTjtQN766MYbPwvq1Fz4Vj
+DkXHyx2qOgjNU0KmXzbEWEY6xRFclzyv8HC8g8YhZsEpZMZZvevaS7yxwoqwWxqt
+vDoBscf5i622jzkQYLI5/vvlLbDC6hPGsEF+2UgRH6tRDt3vO/2b7SzChiilJLJc
+YxJblmrW//cgoj+HfIFi+4y6Mks/rcwN8F/27H5700rcDDRmSCUoco8Av2haC6mt
+U8ondd5z++l0Gdf7E3IkjnQkDL8T3kbhayO8iVzb36W7TIUnv0IDk6V/IAqZ6+eB
+wY0cBcpfKbB1ZJYsVUglxfEqI5LwXMhO5YMR3e2dqL+exD+RyQvNzIv61UjfhKiO
+7oG75t+7s4G2FmpT7VzSCUwHXJYcifraFCSnuvghDMuIWrPSa67q1rxSyU7xxW1Y
+NhfsmSHwPnnps16jYXaezU3nwqEOa84iIWHNHm8aSlQUQ4A+lG+icPpImjaxCjC1
+4j2Y3NPWMJerGo3ODhgKwzgBqZMwLG9dT5OqrAgz6aMbV89A0ijWei/3hj0tzZcF
+tPBJH/Zk65T3hCiqHY+7
+=OqLL
 -----END PGP SIGNATURE-----

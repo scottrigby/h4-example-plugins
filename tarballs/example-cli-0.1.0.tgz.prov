@@ -21,26 +21,26 @@ RuntimeConfig:
     OperatingSystem: ""
   PlatformHooks: null
   ProtocolCommands: null
-SourceURL: https://github.com/scottrigby/h4-simple-plugin-types
+SourceURL: https://github.com/scottrigby/h4-example-plugins
 Type: cli/v1
 Version: 0.1.0
 
 ...
 files:
-  example-cli-0.1.0.tgz: sha256:70c5ce6cf1b2b1d2657f59a1f0b368bcdb37526565275f70a942b208170b8bda
+  example-cli-0.1.0.tgz: sha256:4ef0c4b1cd402d6a170fadb14d68733226e37bff9e2df67ee34754f4a6d0d1c6
 -----BEGIN PGP SIGNATURE-----
 
-wsFcBAEBCgAQBQJorCkQCRDHxvu1uRwRVQAAhzgQANv9oNQ18BMunu+Pk7jmkgXS
-8O3TR1e6RayB6lZGuiviZ3CbTNqOYDk838ahwfrxENy/7YYCbEzZ1PMQiKwE1D68
-xsU7KOYZkeTxUGuIR/mbvkEHbjOR9/Gmv3wVW/lV54Kh67lJrjVhnkMp69njnJnN
-chavx+PxrpOeevGSIJ0h7EY9JsBIlr50zbMKCpa3ynwgQSftaqZ807zH3lsTpP/8
-d9aJtBHEJZto+JYCImLE/kp5ZU0pQtfsXSfG6r+aKM2KdVjUOknEWIQCjph/oN54
-t94u5+vey0LX+UVOQCd+pPgmvH3lqoStAjKCLk7az7xlYV3mo8N3ybd4FRQzAxCg
-hJueD7bXGOekNB1qFN0aba242e0CFqmxwAQ1gRgmK/KXn4uj3Dq0WR/3f2yGNkcS
-98PUAnp4Tn1XwDDVUAWC7FwEy1qfwCM0DNUz3qudY/L/XvNMoCdAy4YaosOUdSFV
-WroyvpvPR62nBie5yb7iW6Op/cuGMFZs8fmHjcAQy9COeQyqgPXJNg/aqbaSxpQb
-WnJSZTC33k8SQlhJsx3d3nd/8BTrPItar/jefB5Q7Eu6u7W4/cMm1Myx4Hya+Mvn
-NQ6mmvkuT5lud46Eoh7F6SKVk/sR0qJ6ggukL7bD++/NX91SB/dgJ4C7ATCClabC
-TK6In5bjdCoz5HaMh3w9
-=ZZQL
+wsFcBAEBCgAQBQJorC8/CRDHxvu1uRwRVQAA4GkQAMOCCa2MP8uXvaW4aAuKB1Qt
+Ht7TmVKj3s834BMr4aBQOFguSeNjbi2O8k15r8XRM/7SxL6TYrGLhpgE9d8eU+Dp
+aRkxjeYZh42nsnsOwI16mpIw0B+oljztUZeVmYfm5FpgsD89GbkaVadUkcoRT3R0
+Q5TjYhnlATmyuWPFUQ1wMZCShXW5XbTzEke8ae0cu/uHFrzDEKjYGBji/4lf7F2j
+hzSICS7jyRkQlq6lvb/YZ0+FlDHRmqMBLVEf62BxvhJ70mQctjm6vIHvJp01c3JA
+OusQFmR9ABQkV1gZEFq+Qf9v62v9HSRrtmaEhidI6p2/EGd6eelLnOiEjZz7Lx0Q
+m9WN8KrW+sNToZhwTqtkQOXKqzDUIxf4jtb9kAB6zMe0j8XUPJf+ClfSkGI5MM7V
+yppUnSMa3p89gkxSt2XWeqgPQlQesGhg0NV92RxcpP4VYkP/nYU0l3tkl1zW6t6W
+MX9Mu3Pyy7H087tatcBI6hY8uRB8LwT2BrkGwvrYD/oasdbxXLNCS/rItGd6OW9y
+YIaDNhURetyUcY8hnt+KhG1ydMmHId6Z3fW2dvRuZe23Iwu7VVDXT4wQdn2XZltl
+rgfMh19tuwLjg5ssP7Q/5/yI0ae+/v3KU1hKzwPtUj44Y+7k2o7R+p6iqIkXeVN2
+1ezdkOXBrr7eRFQ3sI+U
+=8uOE
 -----END PGP SIGNATURE-----

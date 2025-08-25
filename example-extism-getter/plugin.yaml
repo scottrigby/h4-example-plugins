@@ -2,7 +2,7 @@ apiVersion: v1
 type: getter/v1
 name: example-extism-getter
 version: 0.1.0
-sourceURL: https://github.com/scottrigby/h4-simple-plugins
+sourceURL: https://github.com/scottrigby/h4-example-plugins
 runtime: extism/v1
 config:
   protocols:
