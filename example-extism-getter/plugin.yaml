@@ -8,5 +8,5 @@ config:
   protocols:
   - examplewasm
 runtimeConfig:
-  allowedPaths:
-    "/tmp": "/tmp"
+  fileSystem:
+    createTempDir: true

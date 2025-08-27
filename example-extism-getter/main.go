@@ -96,15 +96,11 @@ func createTarGz(dir, prefix string) (*bytes.Buffer, error) {
 	return buf, nil
 }
 
-func impl(input InputMessageGetterV1) (*OutputMessageGetterV1, error) {
+func runGetterPluginImpl(input InputMessageGetterV1) (*OutputMessageGetterV1, error) {
 
 	chartname := filepath.Base(input.Href)
 
-	outputDirPrefix, err := os.MkdirTemp(os.TempDir(), "extism-getter-")
-	if err != nil {
-		return nil, fmt.Errorf("failed to create temp directory: %w", err)
-	}
-	defer os.RemoveAll(outputDirPrefix) // Comment to leave the directory for debugging
+	outputDirPrefix := "/tmp"
 
 	pdk.Log(pdk.LogInfo, fmt.Sprintf("Creating chart %s in directory %s", chartname, outputDirPrefix))
 
@@ -134,7 +130,7 @@ func RunGetterPlugin() error {
 	}
 
 	pdk.Log(pdk.LogDebug, fmt.Sprintf("Received input: %+v", input))
-	output, err := impl(input)
+	output, err := runGetterPluginImpl(input)
 	if err != nil {
 		pdk.Log(pdk.LogError, fmt.Sprintf("failed: %s", err.Error()))
 		return err
