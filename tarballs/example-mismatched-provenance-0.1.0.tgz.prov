@@ -1,0 +1,44 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+APIVersion: v1
+Config:
+  IgnoreFlags: false
+  LongHelp: ""
+  ShortHelp: example plugin to show a mismatched provenance. see tarballs directory
+  Usage: ""
+Name: example-mismatched-provenance
+Runtime: subprocess
+RuntimeConfig:
+  Command: ""
+  Hooks: null
+  PlatformCommands:
+  - Architecture: ""
+    Args: null
+    Command: echo running example-mismatched-provenance
+    OperatingSystem: ""
+  PlatformHooks: null
+  ProtocolCommands: null
+SourceURL: https://github.com/scottrigby/h4-example-plugins
+Type: cli/v1
+Version: 0.1.0
+
+...
+files:
+  example-mismatched-provenance-0.1.0.tgz: sha256:4ef0c4b1cd402d6a170fadb14d68733226e37bff9e2df67ee34754f4a6d0d1c6
+-----BEGIN PGP SIGNATURE-----
+
+wsFcBAEBCgAQBQJosL1LCRDHxvu1uRwRVQAAwHwQAOI2Sw0AZmtk22RxH9bjvzQr
+rXhFE048/TtsJPcdOCYLqBqOOv37+m/jTpOd7CJyJ6GfFSiRTarW/qxc0jp7dZTJ
+CvVUM0fzWpPA8H89LBgfXaqu/qBaVYvr1n1OGxyfhIJM5HinVpkaaDIgHg2Rac4i
+XnNyxNJZkqBs+06ueszC9OAxAtSG//3xedVcEhK6Gvl++BtX3mhb3yAxHgA0qs3i
+ifNZTrdlu21rZqT2S67Pi7mnTa5T7gJjEiEj/Q9F3suRMj3G07c3/B21w1w4wayi
+sZQ7HPQ63WS7/uC8X+ooIx3l8OsrZRFWc9apUehyHon3tBsaB/jqmjOESGYSMv6o
+D1NfwKhY4a8kXVPZ/4rlpaEsifClE+g+obaPA1r+QTHFkCxSAOCwYwGfZs3cyzt8
+IIdoT/OCi45jo056EGXBEOcrGcUh4BTra6VxZp2muPvInL2dPLgR2o73fXdpVbUy
+jld9D9VoknO2IEsvzkKAJc5jWnvgCXi4pLv1Vm55YfJE5wyjPRmk38zhPFIYZGtT
+uWh2GEKJBXxoAjcaJgtdKjSJO0hDVRPUnx++MpYP1/E+L70w0eQLCz4bKa1dUz+l
+y8cskShJu1rgh/nIkT6EFknFFTgU5TN8L12lFg/PyqF/Pkp+LAO0A2gY14uQV2z6
+XLIU24pvyvWlWTEsO1q8
+=lRa9
+-----END PGP SIGNATURE-----
