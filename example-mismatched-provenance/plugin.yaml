@@ -1,0 +1,16 @@
+apiVersion: v1
+type: cli/v1
+name: example-mismatched-provenance
+version: 0.1.0
+sourceURL: https://github.com/scottrigby/h4-example-plugins
+runtime: subprocess
+config:
+  shortHelp: example plugin to show a mismatched provenance
+  longHelp: |
+    see tarballs directory
+    the provenance file sha should be sha256:354716cb4098ed7c28e5573aa24255b7512ffd354d9e09b7aa2c1cba7d748407
+    but it has been changed to sha256:4ef0c4b1cd402d6a170fadb14d68733226e37bff9e2df67ee34754f4a6d0d1c6 (from example-cli-plugin)
+    the status of `helm plugin list` should be "mismatched provenance"
+runtimeConfig:
+  platformCommand:
+    - command: echo running example-mismatched-provenance
