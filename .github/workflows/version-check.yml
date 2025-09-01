@@ -51,7 +51,8 @@ jobs:
             fi
             
             # Check if tag exists for this plugin-version combination
-            TAG="${plugin}-${CURRENT_VERSION}"
+            PLUGIN_NAME=$(basename "$plugin")
+            TAG="${PLUGIN_NAME}-${CURRENT_VERSION}"
             
             if git rev-parse --verify "refs/tags/${TAG}" >/dev/null 2>&1; then
               echo "::error::Version $CURRENT_VERSION for plugin $plugin already exists as tag $TAG"

@@ -52,7 +52,9 @@ jobs:
               continue
             fi
             
-            TAG="${plugin}-${VERSION}"
+            # Extract plugin name without plugins/ prefix
+            PLUGIN_NAME=$(basename "$plugin")
+            TAG="${PLUGIN_NAME}-${VERSION}"
             
             # Check if tag already exists
             if git rev-parse --verify "refs/tags/${TAG}" >/dev/null 2>&1; then
