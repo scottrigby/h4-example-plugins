@@ -106,6 +106,7 @@ jobs:
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
+          token: ${{ secrets.FG_PAT }}
           files: |
             ${{ steps.plugin.outputs.name }}-${{ steps.plugin.outputs.version }}.tgz
             ${{ steps.plugin.outputs.name }}-${{ steps.plugin.outputs.version }}.tgz.prov
