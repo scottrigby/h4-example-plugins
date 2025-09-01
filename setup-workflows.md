@@ -44,6 +44,12 @@ gpg --armor --export $key_id > /home/gpguser/output/public-key.asc
 # export private key (keep this secure!)
 gpg --armor --export-secret-keys $key_id > /home/gpguser/output/private-key.asc
 (paste passphrase from 1password)
+
+# convert your private key to the legacy gpg format
+# See https://helm.sh/docs/topics/provenance/
+echo $passphrase > passphrase.txt
+gpg --batch --yes --pinentry-mode loopback --passphrase-file passphrase.txt --export-secret-keys --output ~/.gnupg/secring.gpg
+base64 -w0 ~/.gnupg/secring.gpg > secring.gpg.base64
 ```
 
 ## 2. Configure GitHub repo
@@ -51,7 +57,7 @@ gpg --armor --export-secret-keys $key_id > /home/gpguser/output/private-key.asc
 1. **Add Repository Secrets:**
    - Go to Settings → Secrets and variables → Actions → Secrets tab
    - click "New repository secret"
-   - Add `GPG_PRIVATE_KEY` containing the private key content from `private-key.asc`
+   - Add `GPG_KEYRING_BASE64` containing the base64 private key content from `secring.gpg.base64`
    - Add `GPG_PASSPHRASE` containing the passphrase for the GPG private key
 
 2. **Add Repository Variables:**

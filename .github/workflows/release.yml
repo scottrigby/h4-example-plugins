@@ -56,12 +56,10 @@ jobs:
         with:
           go-version: '1.24'
 
-      - name: Build Helm 4 from source
+      - name: Install Helm 4 nightly
         run: |
-          git clone --depth 1 --branch main https://github.com/helm/helm.git /tmp/helm
-          cd /tmp/helm
-          make build
-          sudo cp bin/helm /usr/local/bin/helm
+          curl -fsSL https://get.helm.sh/helm-canary-linux-amd64.tar.gz | tar -xz
+          sudo mv linux-amd64/helm /usr/local/bin/helm
           helm version
 
       - name: Build and package plugin
@@ -81,22 +79,27 @@ jobs:
 
             if [ "${{ steps.plugin.outputs.name }}" = "example-mismatched-provenance" ]; then
               # Corrupt the provenance file to create mismatched signature
-              sed -i 's/sha256:[a-f0-9]\{64\}/sha256:deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef/' ${{ steps.plugin.outputs.name }}.tgz.prov
+              sed -i 's/sha256:[a-f0-9]\{64\}/sha256:d6816fb42ef3232522def574ac096e810e87ff8bc398213f3376efb3d3d098f5/' $PACKAGE.prov
             fi
           fi
+        env:
+          PACKAGE: "${{ steps.plugin.outputs.name }}-${{ steps.plugin.outputs.version }}.tgz"
 
       - name: Push to OCI registry
         run: |
-          if [ -f "${{ steps.plugin.outputs.name }}.tgz.prov" ]; then
-            oras push ${{ env.REGISTRY }}/${{ github.repository }}/${{ steps.plugin.outputs.name }}:${{ steps.plugin.outputs.version }} \
+          if [ -f "$PACKAGE.prov" ]; then
+            oras push $NAME \
               --artifact-type application/vnd.helm.plugin.v1+json \
-              ${{ steps.plugin.outputs.name }}.tgz \
-              ${{ steps.plugin.outputs.name }}.tgz.prov
+              $PACKAGE \
+              $PACKAGE.prov
           else
-            oras push ${{ env.REGISTRY }}/${{ github.repository }}/${{ steps.plugin.outputs.name }}:${{ steps.plugin.outputs.version }} \
+            oras push $NAME \
               --artifact-type application/vnd.helm.plugin.v1+json \
-              ${{ steps.plugin.outputs.name }}.tgz
+              $PACKAGE
           fi
+        env:
+          PACKAGE: "${{ steps.plugin.outputs.name }}-${{ steps.plugin.outputs.version }}.tgz"
+          NAME: "${{ env.REGISTRY }}/${{ github.repository }}/${{ steps.plugin.outputs.name }}:${{ steps.plugin.outputs.version }}"
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1

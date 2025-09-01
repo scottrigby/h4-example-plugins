@@ -18,6 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.FG_PAT }}
           fetch-depth: 0
 
       - name: Get changed plugin directories
