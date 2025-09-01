@@ -1,0 +1,66 @@
+name: Version Check
+
+on:
+  pull_request:
+    paths:
+      - 'plugins/**'
+
+jobs:
+  version-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed plugin directories
+        id: changed-plugins
+        run: |
+          # Get list of changed plugin directories
+          changed=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -E '^plugins/[^/]+/' | cut -d/ -f1-2 | sort -u || true)
+          {
+            echo "changed<<EOF"
+            echo "${changed}"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Check version bumps
+        if: ${{ steps.changed-plugins.outputs.changed }}
+        run: |
+          EXIT_CODE=0
+          
+          while IFS= read -r plugin; do
+            if [ -z "$plugin" ]; then continue; fi
+            
+            echo "Checking version for plugin: $plugin"
+            
+            if [ ! -f "$plugin/plugin.yaml" ]; then
+              echo "::error::Missing plugin.yaml in $plugin"
+              EXIT_CODE=1
+              continue
+            fi
+            
+            # Get current version from plugin.yaml
+            CURRENT_VERSION=$(grep '^version:' "$plugin/plugin.yaml" | sed 's/version: *//' | tr -d '"' | tr -d "'")
+            
+            if [ -z "$CURRENT_VERSION" ]; then
+              echo "::error::No version found in $plugin/plugin.yaml"
+              EXIT_CODE=1
+              continue
+            fi
+            
+            # Check if tag exists for this plugin-version combination
+            TAG="${plugin}-${CURRENT_VERSION}"
+            
+            if git rev-parse --verify "refs/tags/${TAG}" >/dev/null 2>&1; then
+              echo "::error::Version $CURRENT_VERSION for plugin $plugin already exists as tag $TAG"
+              echo "::error::Please bump the version in $plugin/plugin.yaml"
+              EXIT_CODE=1
+            else
+              echo "✅ Version $CURRENT_VERSION for plugin $plugin is new"
+            fi
+            
+          done <<< "${{ steps.changed-plugins.outputs.changed }}"
+          
+          exit $EXIT_CODE

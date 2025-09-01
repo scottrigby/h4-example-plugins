@@ -1,2 +1,6 @@
 helm4
-dummy
+dummy/
+*.tgz
+*.tgz.prov
+*.asc
+!public-key.asc
