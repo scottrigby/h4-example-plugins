@@ -1,0 +1,106 @@
+name: Release Plugins
+
+on:
+  push:
+    tags:
+      - '*-*'
+
+env:
+  REGISTRY: ghcr.io
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract plugin info
+        id: plugin
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          PLUGIN_NAME="${TAG%-*}"
+          VERSION="${TAG#*-}"
+          echo "name=$PLUGIN_NAME" >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Verify plugin exists
+        run: |
+          if [ ! -d "plugins/${{ steps.plugin.outputs.name }}" ]; then
+            echo "Error: Plugin directory plugins/${{ steps.plugin.outputs.name }} not found"
+            exit 1
+          fi
+          if [ ! -f "plugins/${{ steps.plugin.outputs.name }}/plugin.yaml" ]; then
+            echo "Error: plugin.yaml not found in plugins/${{ steps.plugin.outputs.name }}"
+            exit 1
+          fi
+
+      - name: Set up ORAS
+        uses: oras-project/setup-oras@v1
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
+
+      - name: Build Helm 4 from source
+        run: |
+          git clone --depth 1 --branch main https://github.com/helm/helm.git /tmp/helm
+          cd /tmp/helm
+          make build
+          sudo cp bin/helm /usr/local/bin/helm
+          helm version
+
+      - name: Build and package plugin
+        run: |
+          cd plugins/${{ steps.plugin.outputs.name }}
+          if [ -f "Makefile" ]; then
+            make build
+          fi
+          cd ../..
+
+          if [ "${{ vars.SIGN }}" = "false" ]; then
+            helm plugin package --sign=false plugins/${{ steps.plugin.outputs.name }}
+          else
+            echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --import --batch
+            gpg --export > ~/.gnupg/pubring.gpg
+            echo "${{ secrets.GPG_PASSPHRASE }}" > passphrase.txt
+            helm plugin package --sign --key '${{ vars.SIGNING_KEY_EMAIL }}' --keyring ~/.gnupg/secring.gpg --passphrase-file passphrase.txt plugins/${{ steps.plugin.outputs.name }}
+            rm -f passphrase.txt
+          fi
+
+      - name: Push to OCI registry
+        run: |
+          if [ -f "${{ steps.plugin.outputs.name }}.tgz.prov" ]; then
+            oras push ${{ env.REGISTRY }}/${{ github.repository }}/${{ steps.plugin.outputs.name }}:${{ steps.plugin.outputs.version }} \
+              --artifact-type application/vnd.helm.plugin.v1+json \
+              ${{ steps.plugin.outputs.name }}.tgz \
+              ${{ steps.plugin.outputs.name }}.tgz.prov
+          else
+            oras push ${{ env.REGISTRY }}/${{ github.repository }}/${{ steps.plugin.outputs.name }}:${{ steps.plugin.outputs.version }} \
+              --artifact-type application/vnd.helm.plugin.v1+json \
+              ${{ steps.plugin.outputs.name }}.tgz
+          fi
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.plugin.outputs.tag }}
+          name: ${{ steps.plugin.outputs.name }} ${{ steps.plugin.outputs.version }}
+          files: |
+            ${{ steps.plugin.outputs.name }}-${{ steps.plugin.outputs.version }}.tgz
+            ${{ steps.plugin.outputs.name }}-${{ steps.plugin.outputs.version }}.tgz.prov
+          generate_release_notes: true

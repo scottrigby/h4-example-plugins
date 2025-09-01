@@ -1,0 +1,67 @@
+name: Auto Tag and Release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'plugins/**'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  auto-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed plugin directories
+        id: changed-plugins
+        run: |
+          # Get list of changed plugin directories in the push
+          changed=$(git diff --name-only HEAD~1...HEAD | grep -E '^plugins/[^/]+/' | cut -d/ -f1-2 | sort -u || true)
+          {
+            echo "changed<<EOF"
+            echo "${changed}"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create tags for changed plugins
+        if: ${{ steps.changed-plugins.outputs.changed }}
+        run: |
+          while IFS= read -r plugin; do
+            if [ -z "$plugin" ]; then continue; fi
+            
+            echo "Processing plugin: $plugin"
+            
+            if [ ! -f "$plugin/plugin.yaml" ]; then
+              echo "::warning::Missing plugin.yaml in $plugin, skipping"
+              continue
+            fi
+            
+            # Get version from plugin.yaml
+            VERSION=$(grep '^version:' "$plugin/plugin.yaml" | sed 's/version: *//' | tr -d '"' | tr -d "'")
+            
+            if [ -z "$VERSION" ]; then
+              echo "::warning::No version found in $plugin/plugin.yaml, skipping"
+              continue
+            fi
+            
+            TAG="${plugin}-${VERSION}"
+            
+            # Check if tag already exists
+            if git rev-parse --verify "refs/tags/${TAG}" >/dev/null 2>&1; then
+              echo "Tag $TAG already exists, skipping"
+            else
+              echo "Creating tag: $TAG"
+              git tag "$TAG"
+              git push origin "$TAG"
+              echo "✅ Created and pushed tag: $TAG"
+            fi
+            
+          done <<< "${{ steps.changed-plugins.outputs.changed }}"

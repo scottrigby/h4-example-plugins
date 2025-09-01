@@ -1,77 +1,74 @@
-PLUGINS := example-cli example-getter example-extism-getter example-postrenderer example-legacy-cli example-legacy-downloader
+PLUGINS := $(notdir $(wildcard plugins/*))
 
-HELM_BINARY := ../helm/bin/helm
+HELM_BINARY := ./helm4
 
 helm4:
-    # A suitable version of Helm source needs to be checked out and built at ../helm
-    # e.g.
-    # git clone https://github.com/scottrigby/helm -b plugin-types --depth 1 ../helm
-    # make -C ../helm
-	test -f $(HELM_BINARY) # need to ensure helm git is checked out ../helm, and helm has been built e.g. make -C ../helm
-	ln -s $(HELM_BINARY) helm4
+	@if [ -f "$(HELM_BINARY)" ]; then \
+		echo "Using existing helm4 binary"; \
+	else \
+		echo "Building Helm 4 from source..."; \
+		TEMP_DIR=$$(mktemp -d); \
+		git clone --depth 1 https://github.com/helm/helm.git "$$TEMP_DIR"; \
+		make -C "$$TEMP_DIR" build; \
+		cp "$$TEMP_DIR/bin/helm" $(HELM_BINARY); \
+		echo "Helm 4 built and copied to $(HELM_BINARY)"; \
+	fi
 
 dummy: helm4
 	@./helm4 create dummy
 
-.PHONY: install test uninstall clean
+.PHONY: install test uninstall clean lint help
+
+help:
+	@echo "Available targets:"
+	@echo "  install   - Build and install all example plugins"
+	@echo "  test      - Run comprehensive plugin tests"
+	@echo "  uninstall - Remove all installed plugins"
+	@echo "  clean     - Clean built artifacts and uninstall plugins"
+	@echo "  lint      - Run linting on plugin code"
+
+lint:
+	@echo "==== Linting plugin code ===="
+	@for plugin in $(PLUGINS); do \
+		if [ -f "plugins/$$plugin/go.mod" ]; then \
+			echo "Linting Go plugin: $$plugin"; \
+			(cd plugins/$$plugin && go fmt ./... && go vet ./...); \
+		fi; \
+	done
+
 
 clean: uninstall
 	@echo "==== Cleaning helm4 binary ===="
 	@rm -rf helm4 dummy
 
 install: helm4
-	make -C example-extism-getter build
+	@echo "==== Building plugins that need building ===="
+	@for plugin in $(PLUGINS); do \
+		if [ -f "plugins/$$plugin/Makefile" ]; then \
+			echo "Building $$plugin..."; \
+			make -C plugins/$$plugin build; \
+		fi; \
+	done
 	@echo "==== Installing example plugins ===="
-	@$(foreach name,$(PLUGINS),\
-		./helm4 plugin install ./$(name) || true; \
-	)
+	@for plugin in $(PLUGINS); do \
+		echo "Installing $$plugin..."; \
+		./helm4 plugin install ./plugins/$$plugin || { echo "Failed to install $$plugin"; exit 1; }; \
+	done
 
 uninstall: helm4
 	@echo "==== Uninstalling example plugins ===="
-	@./helm4 plugin uninstall $(PLUGINS) || true
+	@for plugin in $(PLUGINS); do \
+		echo "Uninstalling $$plugin..."; \
+		./helm4 plugin uninstall $$plugin 2>/dev/null || true; \
+	done
 
-# TODO make these tests a little less verbose. But they should work
-test: install dummy
-	@echo "==== Testing example-cli plugin ===="
-	@echo
-	@./helm4 example-cli foo bar --baz=qux quxx
-	@echo
-	@echo "You should see 'running command example-cli with subcommand foo and args bar --baz=qux quxx'"
-	@echo
-	@echo "==== Testing example-getter plugin ===="
-	@echo
-	@./helm4 template example example://does-not-matter/example
-	@echo
-	@echo "==== Testing example-extism-getter plugin ===="
-	@echo
-	@echo "You should see an 'example' chart template"
-	@echo
-	@./helm4 template example2 examplewasm://does-not-matter/example2
-	@echo
-	@echo "You should see an 'example' chart template"
-	@echo
-	@echo "==== Testing example-wasm-getter plugin ===="
-	@echo
-	@./helm4 template example2 examplewasm://does-not-matter/example2
-	@echo
-	@echo "You should see an 'example2' chart template"
-	@echo
-	@echo "==== Testing example-postrenderer plugin ===="
-	@./helm4 template dummy dummy --post-renderer example-postrenderer
-	@echo
-	@echo "You should see the label 'foo: bar' on every 'dummy' chart resource"
-	@echo
-	@echo "==== Testing combined: example-postrenderer and getter plugins ===="
-	@./helm4 template example example://does-not-matter/example --post-renderer example-postrenderer
-	@echo
-	@echo "You should see the label 'foo: bar' on every 'example' chart resource"
-	@echo
-	@echo "==== Testing example-legacy-cli plugin ===="
-	@echo
-	@./helm4 example-legacy-cli foo bar --baz=qux quxx
-	@echo
-	@echo "You should see 'running command example-legacy-cli with subcommand foo and args bar --baz=qux quxx'"
-	@echo
-	@echo "==== Testing example-legacy-downloader plugin ===="
-	@echo
-	@./helm4 template example example-legacy://does-not-matter/example
+test: uninstall install dummy
+	@echo "==== Testing plugins ===="
+	@./helm4 example-cli foo bar --baz=qux quxx | grep -q "running command example-cli with subcommand foo and args bar --baz=qux quxx" && echo "✅ example-cli works" || echo "❌ example-cli failed"
+	@./helm4 template example2 examplewasm://does-not-matter/example2 | grep -q "Source: example2/templates/serviceaccount.yaml" && echo "✅ example-extism-getter works" || echo "❌ example-extism-getter failed"
+	@./helm4 template example example://does-not-matter/example | grep -q "Source: example/templates/serviceaccount.yaml" && echo "✅ example-getter works" || echo "❌ example-getter failed"
+	@./helm4 example-legacy-cli foo bar --baz=qux quxx | grep -q "running command example-legacy-cli with subcommand foo and args bar --baz=qux quxx" && echo "✅ example-legacy-cli works" || echo "❌ example-legacy-cli failed"
+	@./helm4 template example3 example-legacy://does-not-matter/example3 | grep -q "Source: example3/templates/serviceaccount.yaml" && echo "✅ example-legacy-downloader works" || echo "❌ example-legacy-downloader failed"
+	@./helm4 template dummy dummy --post-renderer example-postrenderer | grep -q "foo: bar" && echo "✅ example-postrenderer works" || echo "❌ example-postrenderer failed"
+	@OUTPUT=$$(./helm4 template example example://does-not-matter/example --post-renderer example-postrenderer); echo "$$OUTPUT" | grep -q "Source: example/templates/serviceaccount.yaml" && echo "$$OUTPUT" | grep -q "foo: bar" && echo "✅ combined getter+postrenderer works" || echo "❌ combined test failed"
+	@echo "==== All plugin tests completed ====="
