@@ -91,6 +91,7 @@ jobs:
           else
             echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --import --batch
             gpg --export > ~/.gnupg/pubring.gpg
+            gpg --export-secret-keys > ~/.gnupg/secring.gpg
             echo "${{ secrets.GPG_PASSPHRASE }}" > passphrase.txt
             helm plugin package --sign --key '${{ vars.SIGNING_KEY_EMAIL }}' --keyring ~/.gnupg/secring.gpg --passphrase-file passphrase.txt plugins/${{ steps.plugin.outputs.name }}
             rm -f passphrase.txt

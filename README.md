@@ -43,7 +43,7 @@ Verify:
 
 ```bash
 # Import the public key
-curl -s https://github.com/scottrigby/h4-example-plugins/raw/refs/heads/main/public-key.asc | gpg --import
+curl -SsL https://github.com/scottrigby/h4-example-plugins/raw/refs/heads/main/public-key.asc | gpg --import
 
 # Convert your keyring to the legacy gpg format
 # See https://helm.sh/docs/topics/provenance/
