@@ -80,8 +80,9 @@ jobs:
             rm -f passphrase.txt
 
             if [ "${{ steps.plugin.outputs.name }}" = "example-mismatched-provenance" ]; then
-            # Corrupt the provenance file to create mismatched signature
-            sed -i 's/sha256:[a-f0-9]\{64\}/sha256:deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef/' ${{ steps.plugin.outputs.name }}.tgz.prov
+              # Corrupt the provenance file to create mismatched signature
+              sed -i 's/sha256:[a-f0-9]\{64\}/sha256:deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef/' ${{ steps.plugin.outputs.name }}.tgz.prov
+            fi
           fi
 
       - name: Push to OCI registry
