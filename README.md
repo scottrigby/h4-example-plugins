@@ -50,5 +50,8 @@ curl -SsL https://github.com/scottrigby/h4-example-plugins/raw/refs/heads/main/p
 gpg --export > ~/.gnupg/pubring.gpg
 
 # Download and verify a plugin
+# OCI install
+helm plugin install oci://ghcr.io/scottrigby/h4-example-plugins/example-cli:0.1.4
+# Or HTTP install
 helm plugin install https://github.com/scottrigby/h4-example-plugins/releases/download/example-cli-0.1.0/example-cli-0.1.0.tgz
 ```

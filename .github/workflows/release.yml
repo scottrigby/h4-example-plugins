@@ -104,11 +104,8 @@ jobs:
           NAME: "${{ env.REGISTRY }}/${{ github.repository }}/${{ steps.plugin.outputs.name }}:${{ steps.plugin.outputs.version }}"
 
       - name: Create GitHub release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.plugin.outputs.tag }}
-          name: ${{ steps.plugin.outputs.name }} ${{ steps.plugin.outputs.version }}
           files: |
             ${{ steps.plugin.outputs.name }}-${{ steps.plugin.outputs.version }}.tgz
             ${{ steps.plugin.outputs.name }}-${{ steps.plugin.outputs.version }}.tgz.prov
-          generate_release_notes: true
