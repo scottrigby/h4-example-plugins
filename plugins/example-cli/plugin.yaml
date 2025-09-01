@@ -3,7 +3,7 @@
 apiVersion: v1
 type: cli/v1
 name: example-cli
-version: 0.1.4
+version: 0.1.5
 sourceURL: https://github.com/scottrigby/h4-example-plugins/tree/main/plugins/example-cli
 runtime: subprocess
 config:
