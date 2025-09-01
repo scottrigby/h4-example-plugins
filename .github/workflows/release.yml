@@ -3,7 +3,7 @@ name: Release Plugins
 on:
   push:
     tags:
-      - '*-*'
+      - '*'
 
 env:
   REGISTRY: ghcr.io
