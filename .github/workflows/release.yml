@@ -76,7 +76,6 @@ jobs:
           else
             base64 -d <<< "${{ secrets.GPG_KEYRING_BASE64 }}" > secring.gpg
             echo "${{ secrets.GPG_PASSPHRASE }}" > passphrase.txt
-            helm package --sign --key "${{ vars.SIGNING_KEY_EMAIL }}" --keyring secring.gpg --passphrase-file passphrase.txt example/
             helm plugin package --sign --key '${{ vars.SIGNING_KEY_EMAIL }}' --keyring secring.gpg --passphrase-file passphrase.txt plugins/${{ steps.plugin.outputs.name }}
             rm -f passphrase.txt
 
