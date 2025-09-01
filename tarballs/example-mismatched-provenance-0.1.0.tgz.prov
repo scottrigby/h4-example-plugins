@@ -4,8 +4,12 @@ Hash: SHA512
 APIVersion: v1
 Config:
   IgnoreFlags: false
-  LongHelp: ""
-  ShortHelp: example plugin to show a mismatched provenance. see tarballs directory
+  LongHelp: |
+    see tarballs directory
+    the provenance file sha should be sha256:354716cb4098ed7c28e5573aa24255b7512ffd354d9e09b7aa2c1cba7d748407
+    but it has been changed to sha256:4ef0c4b1cd402d6a170fadb14d68733226e37bff9e2df67ee34754f4a6d0d1c6 (from example-cli-plugin)
+    the status of `helm plugin list` should be "mismatched provenance"
+  ShortHelp: example plugin to show a mismatched provenance
   Usage: ""
 Name: example-mismatched-provenance
 Runtime: subprocess
@@ -25,20 +29,20 @@ Version: 0.1.0
 
 ...
 files:
-  example-mismatched-provenance-0.1.0.tgz: sha256:4ef0c4b1cd402d6a170fadb14d68733226e37bff9e2df67ee34754f4a6d0d1c6
+  example-mismatched-provenance-0.1.0.tgz: sha256:7b2b17a4bd955a54e4a73e15201baed2bf2834de17d7408820e80a1f4532d85a
 -----BEGIN PGP SIGNATURE-----
 
-wsFcBAEBCgAQBQJosL1LCRDHxvu1uRwRVQAAwHwQAOI2Sw0AZmtk22RxH9bjvzQr
-rXhFE048/TtsJPcdOCYLqBqOOv37+m/jTpOd7CJyJ6GfFSiRTarW/qxc0jp7dZTJ
-CvVUM0fzWpPA8H89LBgfXaqu/qBaVYvr1n1OGxyfhIJM5HinVpkaaDIgHg2Rac4i
-XnNyxNJZkqBs+06ueszC9OAxAtSG//3xedVcEhK6Gvl++BtX3mhb3yAxHgA0qs3i
-ifNZTrdlu21rZqT2S67Pi7mnTa5T7gJjEiEj/Q9F3suRMj3G07c3/B21w1w4wayi
-sZQ7HPQ63WS7/uC8X+ooIx3l8OsrZRFWc9apUehyHon3tBsaB/jqmjOESGYSMv6o
-D1NfwKhY4a8kXVPZ/4rlpaEsifClE+g+obaPA1r+QTHFkCxSAOCwYwGfZs3cyzt8
-IIdoT/OCi45jo056EGXBEOcrGcUh4BTra6VxZp2muPvInL2dPLgR2o73fXdpVbUy
-jld9D9VoknO2IEsvzkKAJc5jWnvgCXi4pLv1Vm55YfJE5wyjPRmk38zhPFIYZGtT
-uWh2GEKJBXxoAjcaJgtdKjSJO0hDVRPUnx++MpYP1/E+L70w0eQLCz4bKa1dUz+l
-y8cskShJu1rgh/nIkT6EFknFFTgU5TN8L12lFg/PyqF/Pkp+LAO0A2gY14uQV2z6
-XLIU24pvyvWlWTEsO1q8
-=lRa9
+wsFcBAEBCgAQBQJosME+CRDHxvu1uRwRVQAAuWYQAEeMvEcTBieYjjLGeEfXm2VI
+TLrKtrr2fRwwqSDfw6P4wZAr7nr3Zfke41nyDKbEXWAyObLBV7oeF/P9zuwHH3AI
+g1D0EjwJWam+utXFrFbheC5BQTVx7MmnxCzEefime8LYtVCF15cEoricrzk5d+gI
+ia3MleiqImcnE4JkkGMycITPk1tMxE6b7I9pDdm9xj44rhKgCONJZbUqDazKaMlW
+2mBd9AUhmkbOeCCjtMPc4c49IjQRzcPBBVZXP50AwVhMStAaTCKfDNWii7gL8mib
+a0vUC6GbxeELf5+ZzxbSmbP8DQS+OqFreCZFTL5fqxmJZj/ttlP9S530M3CaBRsl
+tCMbsfe3QPL57WwcXjw0Tvu9I4RHqSI51+B/3Nz3+LGd/TPQ8mqoHo6ulOy7SXZ7
+hr2sjo3UtJ1BoE9nytxiSrM1K1lC5ldhEAEqRKHz/BjfcY7tvUwQQiNR8v3w43gw
+QJ+vYWTbHCl/uodlD67UZnLMkT0Hi6O8Uq63pdneBKY6M3pYZcEhoTd0A60BEIzv
+czv7W5rFzOKG9T1WVML60oKOocSnnQpTay6MVuYqXx3J6OYwkfN58EEfiwsrqM3L
+1Nj7ItpyBWmzAYHRY0L4+rQyZ/8FfZegoPfqJv2uQj9dZdQZwBUe3JCVKroaXHDJ
+LqNbb2Wh4Dz9VmiJA4B5
+=25/1
 -----END PGP SIGNATURE-----
