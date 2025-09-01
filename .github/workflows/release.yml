@@ -72,7 +72,21 @@ jobs:
           fi
           cd ../..
 
-          if [ "${{ vars.SIGN }}" = "false" ]; then
+          if [ "${{ steps.plugin.outputs.name }}" = "example-unsigned" ]; then
+            helm plugin package --sign=false plugins/${{ steps.plugin.outputs.name }}
+          elif [ "${{ steps.plugin.outputs.name }}" = "example-mismatched-provenance" ]; then
+            # Package with signing first
+            echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --import --batch
+            gpg --export > ~/.gnupg/pubring.gpg
+            echo "${{ secrets.GPG_PASSPHRASE }}" > passphrase.txt
+            helm plugin package --sign --key '${{ vars.SIGNING_KEY_EMAIL }}' --keyring ~/.gnupg/secring.gpg --passphrase-file passphrase.txt plugins/${{ steps.plugin.outputs.name }}
+            rm -f passphrase.txt
+
+            # Corrupt the provenance file to create mismatched signature
+            if [ -f "${{ steps.plugin.outputs.name }}.tgz.prov" ]; then
+              sed -i 's/sha256:[a-f0-9]\{64\}/sha256:deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef/' ${{ steps.plugin.outputs.name }}.tgz.prov
+            fi
+          elif [ "${{ vars.SIGN }}" = "false" ]; then
             helm plugin package --sign=false plugins/${{ steps.plugin.outputs.name }}
           else
             echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --import --batch
