@@ -66,35 +66,23 @@ jobs:
 
       - name: Build and package plugin
         run: |
-          cd plugins/${{ steps.plugin.outputs.name }}
-          if [ -f "Makefile" ]; then
-            make build
+          makefile=plugins/${{ steps.plugin.outputs.name }}/Makefile
+          if [ -f "$makefile" ]; then
+            make -C $makefile build
           fi
-          cd ../..
 
-          if [ "${{ steps.plugin.outputs.name }}" = "example-unsigned" ]; then
-            helm plugin package --sign=false plugins/${{ steps.plugin.outputs.name }}
-          elif [ "${{ steps.plugin.outputs.name }}" = "example-mismatched-provenance" ]; then
-            # Package with signing first
-            echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --import --batch
-            gpg --export > ~/.gnupg/pubring.gpg
-            echo "${{ secrets.GPG_PASSPHRASE }}" > passphrase.txt
-            helm plugin package --sign --key '${{ vars.SIGNING_KEY_EMAIL }}' --keyring ~/.gnupg/secring.gpg --passphrase-file passphrase.txt plugins/${{ steps.plugin.outputs.name }}
-            rm -f passphrase.txt
-
-            # Corrupt the provenance file to create mismatched signature
-            if [ -f "${{ steps.plugin.outputs.name }}.tgz.prov" ]; then
-              sed -i 's/sha256:[a-f0-9]\{64\}/sha256:deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef/' ${{ steps.plugin.outputs.name }}.tgz.prov
-            fi
-          elif [ "${{ vars.SIGN }}" = "false" ]; then
+          if [ "${{ vars.SIGN }}" = "false" || "${{ steps.plugin.outputs.name }}" = "example-unsigned" ]; then
             helm plugin package --sign=false plugins/${{ steps.plugin.outputs.name }}
           else
-            echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --import --batch
-            gpg --export > ~/.gnupg/pubring.gpg
-            gpg --export-secret-keys > ~/.gnupg/secring.gpg
+            base64 -d <<< "${{ secrets.GPG_KEYRING_BASE64 }}" > secring.gpg
             echo "${{ secrets.GPG_PASSPHRASE }}" > passphrase.txt
-            helm plugin package --sign --key '${{ vars.SIGNING_KEY_EMAIL }}' --keyring ~/.gnupg/secring.gpg --passphrase-file passphrase.txt plugins/${{ steps.plugin.outputs.name }}
+            helm package --sign --key "${{ vars.SIGNING_KEY_EMAIL }}" --keyring secring.gpg --passphrase-file passphrase.txt example/
+            helm plugin package --sign --key '${{ vars.SIGNING_KEY_EMAIL }}' --keyring secring.gpg --passphrase-file passphrase.txt plugins/${{ steps.plugin.outputs.name }}
             rm -f passphrase.txt
+
+            if [ "${{ steps.plugin.outputs.name }}" = "example-mismatched-provenance" ]; then
+            # Corrupt the provenance file to create mismatched signature
+            sed -i 's/sha256:[a-f0-9]\{64\}/sha256:deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef/' ${{ steps.plugin.outputs.name }}.tgz.prov
           fi
 
       - name: Push to OCI registry
