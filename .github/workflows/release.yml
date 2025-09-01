@@ -24,8 +24,10 @@ jobs:
         id: plugin
         run: |
           TAG="${GITHUB_REF#refs/tags/}"
+          # Extract version (everything after the last hyphen)
+          VERSION="${TAG##*-}"
+          # Extract plugin name (everything before the last hyphen)
           PLUGIN_NAME="${TAG%-*}"
-          VERSION="${TAG#*-}"
           echo "name=$PLUGIN_NAME" >> $GITHUB_OUTPUT
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "tag=$TAG" >> $GITHUB_OUTPUT
@@ -69,7 +71,7 @@ jobs:
             make -C $makefile build
           fi
 
-          if [ "${{ vars.SIGN }}" = "false" || "${{ steps.plugin.outputs.name }}" = "example-unsigned" ]; then
+          if [ "${{ vars.SIGN }}" = "false" ] || [ "${{ steps.plugin.outputs.name }}" = "example-unsigned" ]; then
             helm plugin package --sign=false plugins/${{ steps.plugin.outputs.name }}
           else
             base64 -d <<< "${{ secrets.GPG_KEYRING_BASE64 }}" > secring.gpg
